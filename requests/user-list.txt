@@ -1,0 +1,5 @@
+GET http://127.0.0.1:3000/user HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjcGF0bmF1ZGVAc2Nob29sZmFtaWx5bWVkaWEuY29tIiwiaWF0IjoxNTI3NjAyNjYyLCJleHAiOjE1Mjc2MDYyNjJ9.XMM-3HYpsVOLX_f1A3rkH_ibye6W30DkO0nls37ynmY
+
+{}
