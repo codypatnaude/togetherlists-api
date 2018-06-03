@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import { Injectable } from '@nestjs/common';
 import {JwtPayload} from '../../interfaces/jwt.payload.interface';
 import { UserService } from '../users/user.service';
+import { AppConfig } from '../../config';
 
 @Injectable()
 export class AuthService {
@@ -23,11 +24,11 @@ export class AuthService {
       email: user.email,
     };
 
-    return await jwt.sign(payload, 'sup3r+s3creT', {expiresIn: 3600});
+    return await jwt.sign(payload, AppConfig.jwt.secret, {expiresIn: 3600});
   }
 
   async verifyAuthToken(token) {
-    const decoded: any = jwt.verify(token, 'sup3r+s3creT');
+    const decoded: any = jwt.verify(token, AppConfig.jwt.secret);
     const user = await this.validateUser(decoded);
     if (!user) throw new Error('Invalid Token');
 
