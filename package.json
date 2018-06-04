@@ -23,7 +23,7 @@
     "@nestjs/passport": "^1.0.10",
     "@nestjs/testing": "^5.0.0-beta.6",
     "@nestjs/typeorm": "^3.0.0",
-    "@nestjs/websockets": "^5.0.0-beta.6",
+    "@nestjs/websockets": "^5.0.1",
     "fastify-formbody": "^2.0.0",
     "jsonwebtoken": "^8.2.1",
     "mysql2": "^1.5.3",

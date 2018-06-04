@@ -30,10 +30,9 @@ export class AuthController {
     );
   }
 
-  @Post('/verify')
-  verifyAuthToken(@Body() data: any, @Res() res) {
-    this.authService
-      .verifyAuthToken(data.token)
-      .then(verified => res.json(verified), err => res.status(500).json(err));
+  @Get('/verify')
+  @UseGuards(AuthGuard('jwt'))
+  verifyAuthToken(@Res() res) {
+    res.json(true);
   }
 }

@@ -44,6 +44,11 @@ export class AuthService {
     });
   }
 
+  getUserFromAuth(token){
+    const decoded: any = jwt.verify(token, AppConfig.jwt.secret);
+    return decoded.id;
+  }
+
   hashPassword(password: string) {
     return crypto.createHmac('sha256', password).digest('hex');
   }

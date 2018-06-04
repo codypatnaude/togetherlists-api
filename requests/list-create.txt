@@ -1,0 +1,7 @@
+POST http://127.0.0.1:3000/list HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjcGF0bmF1ZGVAc2Nob29sZmFtaWx5bWVkaWEuY29tIiwiaWF0IjoxNTI4MTM0MTQzLCJleHAiOjE1MjgxMzc3NDN9.hjWpE86OG0epI7USZVU1Yrb5ATL6ElTpHIODbgKGPQo
+
+{
+  "name": "My Test List2"
+}

@@ -1,20 +1,22 @@
-import {
-  Module,
-  NestModule,
-  MiddlewareConsumer,
-  RequestMethod,
-} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/users/user.module';
 import { CORSMiddleware } from './middlewares/cors.middleware';
 import { AuthService } from 'modules/auth/auth.service';
+import { ListModule } from './modules/list/list.module';
+import { RequesterService } from './services/requester.service';
+import {
+  Module,
+  NestModule,
+  MiddlewareConsumer,
+  RequestMethod,
+} from '@nestjs/common';
 
 @Module({
-  imports: [UserModule, AuthModule],
+  imports: [UserModule, AuthModule, ListModule],
   controllers: [],
-  providers: [AuthService],
+  providers: [AuthService, RequesterService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
