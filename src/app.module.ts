@@ -16,7 +16,7 @@ import {
 @Module({
   imports: [UserModule, AuthModule, ListModule],
   controllers: [],
-  providers: [AuthService, RequesterService],
+  providers: [RequesterService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

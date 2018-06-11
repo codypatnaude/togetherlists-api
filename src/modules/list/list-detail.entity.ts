@@ -7,7 +7,10 @@ import {
   AllowNull,
   CreatedAt,
   UpdatedAt,
+  BelongsTo,
+  ForeignKey,
 } from 'sequelize-typescript';
+import ListHeader from './list-header.entity';
 
 @Table({
   timestamps: true,
@@ -18,7 +21,7 @@ export default class ListDetail extends Model<ListDetail> {
   @Column
   id: number;
 
-  @AllowNull(false)
+  @ForeignKey(() => ListHeader)
   @Column
   list_header_id: number;
 
@@ -32,4 +35,7 @@ export default class ListDetail extends Model<ListDetail> {
   @CreatedAt created_at: Date;
 
   @UpdatedAt modified_at: Date;
+
+  @BelongsTo(() => ListHeader)
+  list: ListHeader;
 }

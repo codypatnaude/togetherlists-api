@@ -4,10 +4,11 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { UserModule } from '../users/user.module';
 import { RequesterService } from 'services/requester.service';
+import { UserService } from '../users/user.service';
 
 @Module({
   imports: [UserModule],
-  providers: [AuthService, JwtStrategy, RequesterService],
+  providers: [UserService, AuthService, JwtStrategy, RequesterService],
   controllers: [AuthController],
   exports: [AuthService, JwtStrategy],
 })

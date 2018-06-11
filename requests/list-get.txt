@@ -1,5 +1,5 @@
-GET http://127.0.0.1:3000/list/1234 HTTP/1.1
+GET http://127.0.0.1:3000/list/1/details HTTP/1.1
 content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjcGF0bmF1ZGVAc2Nob29sZmFtaWx5bWVkaWEuY29tIiwiaWF0IjoxNTI4MTQyMjk4LCJleHAiOjE1MjgxNDU4OTh9.HEyGLJGmLlZ1C7sp8R9-NHUq3ilrhXSOh6dSN2aIt60
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJjcGF0bmF1ZGVAc2Nob29sZmFtaWx5bWVkaWEuY29tIiwiaWF0IjoxNTI4NjQ3OTIwLCJleHAiOjE1Mjg2NTE1MjB9.109iCBPHvg3DqFgJV3s2c4R29mvnMzUeMCwezldPeEc
 
 {}

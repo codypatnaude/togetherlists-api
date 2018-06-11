@@ -32,7 +32,7 @@ export class AuthService {
     const user = await this.validateUser(decoded);
     if (!user) throw new Error('Invalid Token');
 
-    return true;
+    return user;
   }
 
   async validateUser(userToValidate: JwtPayload){

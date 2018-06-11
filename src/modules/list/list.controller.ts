@@ -10,8 +10,13 @@ export class ListController {
   constructor(private listService: ListService, private authService: AuthService) { }
 
   @Get(':id')
-  GetList(@Param('id') id) {
-    return 'You are getting list ' + id;
+  async GetList(@Param('id') id) {
+    return await this.listService.findOne(id);
+  }
+
+  @Get()
+  async GetAll() {
+    return await this.listService.findAll();
   }
 
   @Post()
@@ -23,8 +28,18 @@ export class ListController {
     return await Promise.resolve(this.listService.createList(body));
   }
 
-  @Post(':id')
+  @Post(':id/detail')
   async AddListDetail(@Body() body, @Param('id') id) {
     return await this.listService.addDetail(id, body);
+  }
+
+  @Put(':listId/detail/:id')
+  async UpdateListDetail(@Body() body, @Param('id') id, @Param('listId') listId) {
+    return await this.listService.updateDetail(listId, body);
+  }
+
+  @Get(':id/details')
+  async GetListDetails(@Param('id') id) {
+    return await this.listService.getDetails(id);
   }
 }
