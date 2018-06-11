@@ -7,6 +7,9 @@ import { AppConfig } from '../../config';
 
 @Injectable()
 export class AuthService {
+
+  private user;
+
   constructor(private userService: UserService) { }
 
   async generateAuthToken(creds: any) {
@@ -51,5 +54,16 @@ export class AuthService {
 
   hashPassword(password: string) {
     return crypto.createHmac('sha256', password).digest('hex');
+  }
+
+  setUser(token: string) {
+    this.user = token;
+  }
+
+  getUser() {
+    if (!this.user) {
+      throw new Error('User not authenticated');
+    }
+    return this.user;
   }
 }

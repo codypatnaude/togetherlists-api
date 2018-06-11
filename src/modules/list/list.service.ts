@@ -1,9 +1,9 @@
 import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import ListHeader from './list-header.entity';
 import ListDetail from './list-detail.entity';
-import { RequesterService } from 'services/requester.service';
 import { ListGateway } from './list.gateway';
 import { IFindOptions } from 'sequelize-typescript';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ListService {
@@ -11,15 +11,13 @@ export class ListService {
   user;
 
   constructor(
-    private requesterService: RequesterService,
+    private authService: AuthService,
     @Inject(forwardRef(() => ListGateway))
     private listGateway: ListGateway,
   ) { }
 
   async createList(list){
     console.log(list);
-    // const requester = this.requesterService.getUser();
-    // list.user_id = requester.id;
     return await ListHeader.create(list);
   }
 
