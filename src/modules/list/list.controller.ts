@@ -25,6 +25,7 @@ export class ListController {
     authToken = authToken.split(' ')[1];
     const userId = this.authService.getUserFromAuth(authToken);
     console.log('GOT USER ' + userId);
+    body.user_id = userId;
     return await Promise.resolve(this.listService.createList(body));
   }
 

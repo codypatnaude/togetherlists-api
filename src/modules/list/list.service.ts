@@ -17,8 +17,9 @@ export class ListService {
   ) { }
 
   async createList(list){
-    const requester = this.requesterService.getUser();
-    list.user_id = requester.id;
+    console.log(list);
+    // const requester = this.requesterService.getUser();
+    // list.user_id = requester.id;
     return await ListHeader.create(list);
   }
 
