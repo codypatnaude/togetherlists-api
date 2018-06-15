@@ -32,6 +32,9 @@ export default class ListDetail extends Model<ListDetail> {
   @Column
   complete: number;
 
+  @Column
+  ordering: number;
+
   @CreatedAt created_at: Date;
 
   @UpdatedAt modified_at: Date;
