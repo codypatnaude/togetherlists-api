@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Param, Get, Post, Put, Body, Res, Headers, Req } from '@nestjs/common';
+import { Controller, UseGuards, Param, Get, Post, Put, Body, Res, Headers, Req, Delete } from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import { ListService } from './list.service';
 import { AuthService } from '../auth/auth.service';
@@ -27,6 +27,11 @@ export class ListController {
     console.log('GOT USER ' + userId);
     body.user_id = userId;
     return await Promise.resolve(this.listService.createList(body));
+  }
+
+  @Delete(':listId/detail/:id')
+  async DeleteListDetail(@Param('id') itemId, @Param('listId') listId) {
+    return await this.listService.deleteDetail(listId, itemId);
   }
 
   @Post(':id/detail')

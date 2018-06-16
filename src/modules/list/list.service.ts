@@ -27,6 +27,12 @@ export class ListService {
     this.listGateway.publishUpdate(listId, newItem);
   }
 
+  async deleteDetail(listId, itemId) {
+    await ListDetail.destroy({where: { id: itemId, list_header_id: listId } });
+    const newItem = {id: itemId, deleted: true};
+    this.listGateway.publishUpdate(listId, newItem);
+  }
+
   async findOne(id){
     return await ListHeader.findById(id);
   }
