@@ -3,11 +3,11 @@ import { UserService } from './user.service';
 import User from './user.entity';
 import {AuthGuard} from '@nestjs/passport';
 
-@UseGuards(AuthGuard('jwt'))
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   findAll(@Res() res) {
     this.userService.findAll().then(

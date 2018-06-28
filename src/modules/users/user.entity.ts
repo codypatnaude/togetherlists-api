@@ -32,8 +32,6 @@ export default class User extends Model<User> {
 
   @Column email: string;
 
-  @Column phone: string;
-
   @CreatedAt created_at: Date;
 
   @UpdatedAt modified_at: Date;

@@ -1,9 +1,16 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import User from './user.entity';
+import {CreateUserDTO} from './createUser.dto';
+import { AuthService } from '../auth/auth.service';
+import {plainToClass} from 'class-transformer';
+import {validate} from 'class-validator';
 
 @Injectable()
 export class UserService {
-  constructor() {}
+  constructor(
+    @Inject(forwardRef(() => AuthService))
+    private authService: AuthService,
+  ) {}
 
   async findAll(): Promise<User[]> {
     return await User.findAll<User>();
@@ -13,20 +20,28 @@ export class UserService {
     return await User.findOne(criteria);
   }
 
-  createUser(user){
-    return User.create(user);
-  }
+  async createUser(plainUser: CreateUserDTO){
 
-  private validateUser(user: User){
-    if (
-      !user.username || !user.username.length ||
-      !user.email || !user.email.length ||
-      !user.phone || !user.phone.length ||
-      !user.first_name || !user.first_name.length ||
-      !user.last_name || !user.last_name.length ||
-      !user.password || !user.password.length
-    ) throw new Error('Invalid structure for user object');
+    const user: CreateUserDTO = plainToClass(CreateUserDTO, plainUser);
 
-    return User.create<User>(user);
+    const errors = await validate(user);
+
+    if (errors.length) {
+      throw errors;
+    }
+
+    const creds = {
+      username: user.username,
+      password: user.password,
+    };
+
+    user.password = this.authService.hashPassword(user.password);
+    await User.create(user);
+
+    const token = await this.authService.generateAuthToken(creds);
+    return {
+      success: true,
+      token,
+    };
   }
 }
